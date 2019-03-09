@@ -1,0 +1,15 @@
+prediction.py has 3 steps,
+
+1. load data filter out data with Nan value in 'Project Phase Actual Start Date','Project Phase Planned End Date','Project Phase Actual End Date'.
+    then check whether projects are off schedule. save the result in column 'pass_timeline'
+
+2. create training/test dataset
+    convert 'Project Geographic District ', 'Project School Name', 'Project Type ' and 'concurrent_projects_num' values to one hot spot vectors
+    and divide dataset to training set and test set
+
+3. create a model(decision tree), fit data in it and get f1 score for both test set and training set.
+
+
+according to the performance, we can see the model doing OK in training set, but poor in test set. seems there is a over fitting issue.
+This is mainly because we have to much 'Project School Name' values. Our decision tree model has very limited number of training data for each school(model will significantly effected by small set of data samples).
+If we find better way to create training/test dataset, we may improve the performance.
